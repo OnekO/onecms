@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    userId: {type: String},
+    userId: {type: String, unique: true},
     email: {type: String},
     password: {type: String},
     firstName: {type: String},
@@ -11,7 +11,7 @@ var userSchema = new Schema({
     role: {type: String},
     language: {type: String},
     siteId: {type: String},
-    token: {type: String},
+    token: {type: String, unique: true},
     isActive: {type: Boolean},
     siteAdmin: {type: Boolean},
     created: {type: Date}

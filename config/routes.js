@@ -7,5 +7,6 @@ module.exports = function(app) {
     app.get('/', index.render);
 
     require('../app/routes/users.js')(app);
+    require('../app/routes/api/users.js')(app);
 };
 
