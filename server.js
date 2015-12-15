@@ -35,7 +35,6 @@ walk(models_path);
 
 var app = express();
 mongoose.connection.on('connected', function() {
-    console.log('connected');
     // Express/Mongo session storage
     var session = require('express-session');
     var MongoStore = require('connect-mongo')({session: session});
@@ -46,18 +45,20 @@ mongoose.connection.on('connected', function() {
             collection: config.sessionCollection
         })
     }));
-});
 
-//express settings
-require('./config/express')(app, db);
+    //express settings
+    require('./config/express')(app, db);
 
 //Bootstrap routes
-require('./config/routes')(app);
+    require('./config/routes')(app);
 
 //Start the app by listening on <port>
-var port = config.port;
-app.listen(port);
-console.log('Express app started on port ' + port);
+    var port = config.port;
+    app.listen(port);
+    console.log('Express app started on port ' + port);
+});
+
+
 
 //expose app
 exports = module.exports = app;
