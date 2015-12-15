@@ -34,6 +34,19 @@ var walk = function(path) {
 walk(models_path);
 
 var app = express();
+mongoose.connection.on('connected', function() {
+    console.log('connected');
+    // Express/Mongo session storage
+    var session = require('express-session');
+    var MongoStore = require('connect-mongo')({session: session});
+    app.use(session({
+        secret: config.sessionSecret,
+        store: new MongoStore({
+            db: db.connection.db,
+            collection: config.sessionCollection
+        })
+    }));
+});
 
 //express settings
 require('./config/express')(app, db);
