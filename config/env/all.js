@@ -16,4 +16,4 @@ module.exports = {
   	sessionSecret: 'MEAN',
   	// The name of the MongoDB collection to store sessions in
   	sessionCollection: 'sessions'
-}
+};
